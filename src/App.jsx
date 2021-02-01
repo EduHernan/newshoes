@@ -1,8 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
-import Navbar from './components/navbar';
+import Navbar from './components/navbar/navbar';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import ItemListContainer from './components/containers/ItemListContainer';
 
-let estilos = {color:'lavender', background:'blue'}
+
+let estilos = {color:'lavender', background:'orangered'}
 
 function App() {
   return (
@@ -10,8 +12,11 @@ function App() {
     <>
     <Navbar />
     
-    <h1 className= "row" style= {estilos}>Hola coders</h1>
+    <h1 className= "" style= {estilos}>Tienda de productos</h1>
+    <ItemListContainer greeting={'Contenedor de productos'} />
+
     
+
     </>
     
   );

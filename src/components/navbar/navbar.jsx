@@ -1,14 +1,14 @@
-let estilos = {color:'lavender', background:'blue'}
+import CardWidget from "./CardWidget";
+
+let estilos = {color:'lavender', background:'orangered', display:'inline', marginLeft:'20px'}
 
 const Navbar = () => {
   return (
     <>
-    
         <nav>
             
+        <CardWidget/>
         <h1 style= {estilos}>New Shoes</h1>
-        
-            
             <ul>
                 <li><a href="inicio.html">Inicio</a></li>
                 <li><a href="productos.html">Productos</a></li>
@@ -20,5 +20,7 @@ const Navbar = () => {
     </>
   );
 }
+
+
 
 export default Navbar;
