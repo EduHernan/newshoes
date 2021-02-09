@@ -13,7 +13,9 @@ function App() {
     <Navbar />
     
     <h1 className= "" style= {estilos}>Tienda de productos</h1>
-    <ItemListContainer greeting={'Contenedor de productos'} />
+    <ItemListContainer greeting={'Listado de nuestros productos'} />
+
+    
 
     
 
