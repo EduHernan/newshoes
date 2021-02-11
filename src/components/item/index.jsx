@@ -1,4 +1,4 @@
-let lista = {border:'2px solid orangered', width:'300px', display:'inline-block', marginTop: 30}
+let lista = {border:'2px solid orange', width:'300px', display:'inline-block', marginTop: 30}
 
 const Items = ({producto}) => {
     return <div style={lista}>
