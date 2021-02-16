@@ -1,42 +1,33 @@
-import { useState } from "react"
-import ItemCount from "../itemCount"
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom"
+import SimuladorBd from "../item/simuladorBd";
 
-let lista = {border:'2px solid orange', width:'300px', display:'inline-block', marginTop: 30,}
+const ItemDetail = (producto) => {
+    const {id} = useParams();
 
-const ItemDetail = ({details}) => {
+    const [url, setUrl] = useState(0)
 
-    const [contador, setContador] = useState(0)
+    useEffect(() => {
+        console.log(id)
+        let filtro = SimuladorBd.filter( (producto) => {
+            return producto.id === id 
+        });
+        console.log(filtro)
+        setUrl(filtro.imagen)
 
-    const onAdd = (stock) => {
-        if (contador < stock) {
-            setContador (contador+1);
-        } else {
-            alert ('No tenemos más stock')
-        }
-    }
-
-    const alSacar = () => {
-        if (contador > 0) {
-            setContador (contador-1);
-        } else {
-            alert ('No hay items en el carrito')
-        }
-    }
+    },[id])
 
     return (
-        
-        <div style={lista}> 
-        
-        <h3>{details.nombre}</h3>
-        <p>Precio:{details.precio}</p>
-        <p>Stock:{details.stock}</p>
-        <p>Color:{details.color}</p>
-        <div><ItemCount contador={contador} onAdd={onAdd} stock={20} alSacar={alSacar} /></div>
-
-    </div>
-        
-
+        <>
+        <div>
+            
+            <h2>{id}</h2>
+            <h5>Aca deberá ir el detalle del producto</h5>
+            <img src={url} alt=""/>
+            <h2>{url}</h2>
+        </div>
+        </>
     )
 }
 
-export default ItemDetail
+export default ItemDetail;

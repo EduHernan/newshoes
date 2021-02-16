@@ -10,7 +10,7 @@ const ItemDetailContainer = () => {
         const GetItems = new Promise ((resolve, reject) => {
             setTimeout (( ) => {
                 resolve(SimuladorDetails);
-            }, 3000);
+            }, 1000);
         })
     
         GetItems.then (resultado => {

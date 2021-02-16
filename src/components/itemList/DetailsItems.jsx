@@ -1,4 +1,4 @@
-import ItemDetail from "../itemDetail"
+import ItemNewCategory from "../itemNewCategory"
 
 const DetailsItems = ({details}) => {
     return (
@@ -6,7 +6,7 @@ const DetailsItems = ({details}) => {
             <ul>
             {details.map((details) => {
                 
-                return <ItemDetail key={details.id} details={details}/>
+                return <ItemNewCategory key={details.id} details={details}/>
                     
             })}
             </ul>
