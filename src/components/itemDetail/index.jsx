@@ -2,18 +2,18 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import SimuladorBd from "../item/simuladorBd";
 
-const ItemDetail = (producto) => {
+const ItemDetail = ({producto}) => {
     const {id} = useParams();
 
-    const [url, setUrl] = useState(0)
+    const [url, setUrl] = useState([])
 
     useEffect(() => {
-        console.log(id)
-        let filtro = SimuladorBd.filter( (producto) => {
-            return producto.id === id 
+        let filtro = SimuladorBd.filter( (elem) => {
+            return elem.id.toString() === id 
+             
         });
         console.log(filtro)
-        setUrl(filtro.imagen)
+        setUrl(filtro[0].imagen)
 
     },[id])
 
@@ -23,8 +23,9 @@ const ItemDetail = (producto) => {
             
             <h2>{id}</h2>
             <h5>Aca deberá ir el detalle del producto</h5>
-            <img src={url} alt=""/>
-            <h2>{url}</h2>
+            <img src={url} width='400px' alt=''/>
+            <h2></h2>
+            <p></p>
         </div>
         </>
     )
