@@ -5,7 +5,7 @@ let lista = {border:'2px solid orange', width:'300px', display:'inline-block', m
 
 const ItemNewCategory = ({details}) => {
 
-    const [contador, setContador] = useState(0)
+    const [contador, setContador] = useState(1)
 
     const onAdd = (stock) => {
         if (contador < stock) {
@@ -31,7 +31,7 @@ const ItemNewCategory = ({details}) => {
         <p>Precio:{details.precio}</p>
         <p>Stock:{details.stock}</p>
         <p>Color:{details.color}</p>
-        <div><ItemCount contador={contador} onAdd={onAdd} stock={20} alSacar={alSacar} /></div>
+        <div><ItemCount contador={contador} onAdd={onAdd} stock={10} alSacar={alSacar} /></div>
 
     </div>
         
