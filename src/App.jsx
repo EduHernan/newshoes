@@ -5,13 +5,13 @@ import Navbar from './components/navbar/navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ItemListContainer from './components/containers/ItemListContainer';
 import ItemDetailContainer from './components/containers/ItemDetailContainer';
-import ItemDetail from './components/itemDetail';
+
 import Cart from './components/cart';
 
 
 let estilos = {color:'lavender', background:'orangered'}
 
-function App() {
+function App(parametros) {
   return (
     <BrowserRouter>
     <Navbar />
@@ -24,13 +24,10 @@ function App() {
         <ItemListContainer greeting={'Listado de nuestros productos'} />
       </Route>
       <Route path="/item/:id">
-        <ItemDetail/>
+        <ItemDetailContainer/>
       </Route>
 
       
-      <Route exact path="/category/:id">
-        <ItemDetailContainer/>
-      </Route>
       <Route exact Path="/Cart">
         <Cart/>
 

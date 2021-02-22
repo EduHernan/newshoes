@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import CardWidget from "./CardWidget";
 
 let estilos = {color:'lavender', background:'orangered', display:'inline', marginLeft:'20px'}
@@ -7,10 +8,11 @@ const Navbar = () => {
   return (
     <>
         <nav>
-            
-        <CardWidget/>
-        <h1 style= {estilos}>New Shoes</h1>
-            <ul>
+          <Link to={`/`}>
+            <CardWidget/>
+            <h1 style= {estilos}>New Shoes</h1>
+          </Link>
+          <ul>
                 <li style= {navbar}><a href="inicio.html">Inicio</a></li>
                 <li style= {navbar}><a href="productos.html">Productos</a></li>
                 <li style= {navbar}><a href="quienes-somos.html">Quienes somos</a></li>

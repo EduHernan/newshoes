@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import SimuladorBd from "../item/simuladorBd";
 import ItemList from "../itemList";
 
@@ -15,18 +14,20 @@ const ItemListContainer = ({greeting}) => {
         })
     
         FirstPromise.then (resultado => {
+            
             setProducto(resultado);
+            
+            
+            
         })
     }, [] )
 
 
     return (
         <>
-        <a className="h1"> {greeting} </a> <br/>
+        <p className="h1"> {greeting} </p> <br/>
         <ItemList producto={producto}/>
-        <Link to={`/category/:id`}>
-            <b>Más artículos</b>
-        </Link>
+        
         
         </>
     )

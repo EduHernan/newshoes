@@ -1,16 +1,26 @@
-import ItemNewCategory from "../itemNewCategory"
+
+import ItemDetail from "../itemDetail"
+
 
 const DetailsItems = ({details}) => {
+
+   
+
     return (
+        <>
         <div>
             <ul>
             {details.map((details) => {
                 
-                return <ItemNewCategory key={details.id} details={details}/>
+                
+                return <ItemDetail key={details.id} details={details}/>
+                
                     
             })}
             </ul>
         </div>
+        
+        </>
     )
 }
 

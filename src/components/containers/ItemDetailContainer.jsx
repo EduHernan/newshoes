@@ -1,15 +1,23 @@
 import { useEffect, useState } from "react"
-import SimuladorDetails from "../item/simuladorDetails"
-import DetailsItems from "../itemList/DetailsItems"
+
+import SimuladorBd from "../item/simuladorBd"
+import ItemDetail from "../itemDetail"
+
+
+
 
 
 const ItemDetailContainer = () => {
+
+    
+
+
     const [details, setDetails] = useState([])
     
     useEffect(() => {
         const GetItems = new Promise ((resolve, reject) => {
             setTimeout (( ) => {
-                resolve(SimuladorDetails);
+                resolve(SimuladorBd);
             }, 1000);
         })
     
@@ -19,8 +27,19 @@ const ItemDetailContainer = () => {
     }, [] )
     return (
         <>
-            <DetailsItems details={details}/>
+
+        <div>
+            <ul>
+            
+                
+            <ItemDetail key={details.id} details={details}/>
+            </ul>
+        
+           </div>
         </>
+
+            
+        
             
     )
     

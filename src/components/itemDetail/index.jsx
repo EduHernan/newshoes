@@ -1,34 +1,83 @@
+
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import SimuladorBd from "../item/simuladorBd";
+import ItemCount from "../itemCount";
 
-const ItemDetail = ({producto}) => {
+let detalles = {border:'2px solid orange', display:'inline-block', marginTop: 30, textAlign: 'Center'}
+let centrado = {marginLeft: 'auto', marginRight: 'auto', width:'600px'}
+
+const ItemDetail = ({details}) => {
     const {id} = useParams();
-
-    const [url, setUrl] = useState([])
+    
+    const [url, setUrl] = useState([]);
+    
 
     useEffect(() => {
-        let filtro = SimuladorBd.filter( (elem) => {
-            return elem.id.toString() === id 
-             
+       
+        let filting = SimuladorBd.find ( (elem) => {
+            return elem.id.toString() === id
+          
+            
         });
-        console.log(filtro)
-        setUrl(filtro[0].imagen)
+        console.log(filting)
+       
+       
+        setUrl(filting)
+    }, [url, id])
 
-    },[id])
+    const [contador, setContador] = useState(1)
+
+    const sumando = (stock) => {
+        if (contador < stock) {
+            setContador (contador+1);
+            
+        } else {
+            alert ('No tenemos más stock')
+           
+        }
+    }
+
+    const alSacar = () => {
+        if (contador > 0) {
+            setContador (contador-1);
+        } else {
+            alert ('No hay items en el carrito')
+        }
+    }
+
+    const [routeCart, setRouterCart] = useState(false)
+
+
+    const onAdd = () => {
+        console.log('usted agrego', contador, 'productos')
+        setRouterCart(true);
+       }
 
     return (
         <>
-        <div>
+          <div style={centrado}>
+            <div style={detalles}>
+                  <h2>{id}</h2>
+           
+                <img src={url.imagen} width='400px' alt=''/>
+                <h2>{url.nombre}</h2>
+                <p>Precio: {url.precio}</p>
+                <p>Stock: {url.stock}</p>
+                <p>Color: {url.color}</p>
+                <p>{url.descripcion}</p>
+                {routeCart ? <Link to={`/Cart`}> <button className="btn btn-success"> Terminar mi compra</button> </Link> : 
+                 <div><ItemCount onAdd={onAdd} contador={contador} sumando={sumando} 
+                 stock={10} alSacar={alSacar} /></div> }
+            </div>
+           
             
-            <h2>{id}</h2>
-            <h5>Aca deberá ir el detalle del producto</h5>
-            <img src={url} width='400px' alt=''/>
-            <h2></h2>
-            <p></p>
-        </div>
+         </div>
+            
+        
         </>
     )
 }
 
 export default ItemDetail;
+
