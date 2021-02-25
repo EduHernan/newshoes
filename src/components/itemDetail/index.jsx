@@ -1,6 +1,7 @@
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom"
+import { CartContext} from "../../context/CartContext";
 import SimuladorBd from "../item/simuladorBd";
 import ItemCount from "../itemCount";
 
@@ -20,7 +21,6 @@ const ItemDetail = ({details}) => {
           
             
         });
-        console.log(filting)
        
        
         setUrl(filting)
@@ -47,12 +47,24 @@ const ItemDetail = ({details}) => {
     }
 
     const [routeCart, setRouterCart] = useState(false)
+    const {carrito, AgregarCarrito} = useContext(CartContext)
+
 
 
     const onAdd = () => {
         console.log('usted agrego', contador, 'productos')
         setRouterCart(true);
+        AgregarCarrito({item: url, cantidad: contador})
+        
+        
        }
+
+      
+       
+        
+       
+    
+
 
     return (
         <>
@@ -66,9 +78,13 @@ const ItemDetail = ({details}) => {
                 <p>Stock: {url.stock}</p>
                 <p>Color: {url.color}</p>
                 <p>{url.descripcion}</p>
-                {routeCart ? <Link to={`/Cart`}> <button className="btn btn-success"> Terminar mi compra</button> </Link> : 
+                 {/* Comento el link a Cart para mostrar como se agregan los productos en consola
+                 {routeCart ? <Link to={`/Cart`}> <button className="btn btn-success"> Terminar mi compra</button> </Link> : 
                  <div><ItemCount onAdd={onAdd} contador={contador} sumando={sumando} 
-                 stock={10} alSacar={alSacar} /></div> }
+                 stock={10} alSacar={alSacar} /></div> } */} 
+                 
+                 <div><ItemCount onAdd={onAdd} contador={contador} sumando={sumando} 
+                 stock={10} alSacar={alSacar} /></div>
             </div>
            
             

@@ -33,7 +33,11 @@ const Items = ({producto,}) => {
    const onAdd = () => {
     console.log('usted agrego', contador, 'productos')
     setRouterCart(true);
+
+    
 }
+
+
 
     return (
         

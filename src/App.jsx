@@ -7,12 +7,16 @@ import ItemListContainer from './components/containers/ItemListContainer';
 import ItemDetailContainer from './components/containers/ItemDetailContainer';
 
 import Cart from './components/cart';
+import {CartProvider} from './context/CartContext';
+
 
 
 let estilos = {color:'lavender', background:'orangered'}
 
-function App(parametros) {
-  return (
+function App() {
+  return ( 
+   
+    <CartProvider>
     <BrowserRouter>
     <Navbar />
 
@@ -34,14 +38,10 @@ function App(parametros) {
       </Route>
       
     </Switch>
-    
-    
-
-    
-
-    
-
     </BrowserRouter>
+    </CartProvider>
+   
+    
     
   );
 }
