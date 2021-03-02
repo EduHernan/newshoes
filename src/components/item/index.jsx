@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import ItemCount from "../itemCount"
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { CartContext } from "../../context/CartContext"
 
 
 let lista = {border:'2px solid orange', width:'300px', display:'inline-block', marginTop: 30}
@@ -29,13 +30,17 @@ const Items = ({producto,}) => {
     }
 
    const [routeCart, setRouterCart] = useState(false)
+   const {carrito, AgregarCarrito, setCarrito} = useContext(CartContext)
+  
 
    const onAdd = () => {
     console.log('usted agrego', contador, 'productos')
     setRouterCart(true);
-
-    
+    setCarrito([...carrito, {item: producto, cantidad: contador}])
 }
+
+
+
 
 
 

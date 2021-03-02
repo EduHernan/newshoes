@@ -1,10 +1,14 @@
-import {useEffect, useState } from "react";
+import {useContext, useEffect, useState } from "react";
+import { CartContext } from "../../context/CartContext";
+import Cart from "../cart";
 import SimuladorBd from "../item/simuladorBd";
 import ItemList from "../itemList";
 
 const ItemListContainer = ({greeting}) => {
 
     const [producto, setProducto] = useState([])
+    
+    const {carrito, AgregarCarrito, setCarrito} = useContext(CartContext)
 
    
     
@@ -28,6 +32,7 @@ const ItemListContainer = ({greeting}) => {
 
     return (
         <>
+        <Cart producto={producto}/>
         <p className="h1"> {greeting} </p> <br/>
         <ItemList producto={producto}/>
         
