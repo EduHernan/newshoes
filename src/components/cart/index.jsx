@@ -16,8 +16,13 @@ const Cart = ({producto}) => {
         <div>
            
         <h1>Carrito de compras</h1>
-        <table id="lista-carrito">
-                <tbody></tbody>
+        <table id="lista-carrito"> <p>test</p>
+            <thead>
+                <tr>
+                <tbody><p>prueba</p></tbody>
+                </tr>
+            </thead>
+                
             </table>
         </div>
     

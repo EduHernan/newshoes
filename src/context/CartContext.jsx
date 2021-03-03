@@ -6,72 +6,77 @@ export const CartContext = createContext();
 
 
 export const CartProvider = ({children}) => {
-    const [carrito, setCarrito] = useState([])
-    const contenedorCarrito = document.querySelector('#lista-carrito tbody');
 
-    useEffect(() => {
-        if (localStorage.getItem('carrito') !== null ) {
-            setCarrito(JSON.parse(localStorage.getItem('carrito')))
-        }
-    },[])
+    const contenedorCarrito = document.querySelector('#lista-carrito tbody');
+    document.addEventListener('DOMContentLoaded', () => {
+        let articulos = carrito;
+        
+        articulos = JSON.parse(localStorage.getItem('carrito')) || [];
+        console.log(articulos)
+
+        insertarProducto();
+        
+    })
+
+    const [carrito, setCarrito] = useState([])
+    
+
+    
 
     const AgregarCarrito = (producto) => {
         setCarrito (producto)
         
     }
-    insertarProducto()
 
-    function insertarProducto () {
-        
+    
        
+    insertarProducto();
+    
+    function insertarProducto () {
+       
+        borrarHTML();
         carrito.forEach (carrito => {
-            const {item, cantidad} = carrito
+            const {imagen, nombre, precio, id} = carrito
 
             const row = document.createElement('tr');
         row.innerHTML = `
         <td> 
-            <img src='${item.imagen}' width=150>
+            <img src='${imagen}' width=150>
         </td> 
         <td>
-            ${item.nombre}
+            ${nombre}
         </td>
         <td>
-            ${item.precio}
+            ${precio}
         </td>
         <td>
-            ${cantidad}
-        </td>
-        <td>
-            <button ${item.id} class="borrar-producto btn btn-danger">-</button>
+            <button ${id} class="borrar-producto btn btn-danger">-</button>
         </td>
         `
         contenedorCarrito.appendChild(row);
         
-        })
-        guardarStorage();
+        almacenamiento();
         
+        })
         
         
     }
+
+    
     
 
-    function borrarHTML () {
-        
-        contenedorCarrito.innerHTML = '';
-    }
+    function borrarHTML() {
+        const eliminador = contenedorCarrito
+        eliminador.innerHTML = '';
+        }
+    
 
     // Agregando Storage al documento
   
-
-    
-
-    insertarProducto();
-
-    function guardarStorage() {
+    function almacenamiento() {
     localStorage.setItem('carrito', JSON.stringify(carrito))
     }
 
-    console.log(contenedorCarrito)
     
   
     console.log(carrito)
@@ -82,6 +87,7 @@ export const CartProvider = ({children}) => {
         AgregarCarrito
     }}>
         {children}
+        
 
     </CartContext.Provider>
 }

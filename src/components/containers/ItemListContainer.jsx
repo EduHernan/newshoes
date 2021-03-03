@@ -8,7 +8,7 @@ const ItemListContainer = ({greeting}) => {
 
     const [producto, setProducto] = useState([])
     
-    const {carrito, AgregarCarrito, setCarrito} = useContext(CartContext)
+   
 
    
     

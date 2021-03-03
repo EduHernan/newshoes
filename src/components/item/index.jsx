@@ -36,7 +36,7 @@ const Items = ({producto,}) => {
    const onAdd = () => {
     console.log('usted agrego', contador, 'productos')
     setRouterCart(true);
-    setCarrito([...carrito, {item: producto, cantidad: contador}])
+    setCarrito([...carrito, producto]);
 }
 
 
