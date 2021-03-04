@@ -6,6 +6,7 @@ export const CartContext = createContext();
 
 
 export const CartProvider = ({children}) => {
+    
 
     const contenedorCarrito = document.querySelector('#lista-carrito tbody');
     document.addEventListener('DOMContentLoaded', () => {
@@ -34,7 +35,6 @@ export const CartProvider = ({children}) => {
     
     function insertarProducto () {
        
-        borrarHTML();
         carrito.forEach (carrito => {
             const {imagen, nombre, precio, id} = carrito
 

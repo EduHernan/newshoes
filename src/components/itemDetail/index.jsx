@@ -2,29 +2,32 @@
 import { useContext, useEffect, useState } from "react";
 import {Link, useParams } from "react-router-dom"
 import { CartContext} from "../../context/CartContext";
-import SimuladorBd from "../item/simuladorBd";
+import { getFirestore } from "../../firebase";
+
 import ItemCount from "../itemCount";
 
 let detalles = {border:'2px solid orange', display:'inline-block', marginTop: 30, textAlign: 'Center'}
 let centrado = {marginLeft: 'auto', marginRight: 'auto', width:'600px'}
 
-const ItemDetail = ({details}) => {
+const ItemDetail = () => {
     const {id} = useParams();
+
+    const [producto, setProducto] = useState([])
     
-    const [url, setUrl] = useState([]);
     
 
     useEffect(() => {
-       
-        let filting = SimuladorBd.find ( (elem) => {
-            return elem.id.toString() === id
-          
-            
-        });
-       
-       
-        setUrl(filting)
-    }, [url, id])
+        const baseDeDatos = getFirestore(); //conexión a la bd
+        const itemCollection = baseDeDatos.collection('productos'); // Guardando la referencia
+        const item = itemCollection.doc(id)
+        item.get().then((value) => {
+            let aux = value.data()
+            console.log(aux);
+            setProducto(aux);
+        })
+    }, [id])
+    
+    
 
     const [contador, setContador] = useState(1)
 
@@ -47,14 +50,15 @@ const ItemDetail = ({details}) => {
     }
 
     const [routeCart, setRouterCart] = useState(false)
-    const {carrito, AgregarCarrito} = useContext(CartContext)
+    const {carrito, setCarrito} = useContext(CartContext)
 
 
 
     const onAdd = () => {
         console.log('usted agrego', contador, 'productos')
         setRouterCart(true);
-        AgregarCarrito({item: url, cantidad: contador})
+        setCarrito([...carrito, producto]);
+        
         
         
        }
@@ -70,14 +74,13 @@ const ItemDetail = ({details}) => {
         <>
           <div style={centrado}>
             <div style={detalles}>
-                  <h2>{id}</h2>
            
-                <img src={url.imagen} width='400px' alt=''/>
-                <h2>{url.nombre}</h2>
-                <p>Precio: {url.precio}</p>
-                <p>Stock: {url.stock}</p>
-                <p>Color: {url.color}</p>
-                <p>{url.descripcion}</p>
+                <img src={producto.imagen} width='400px' alt=''/>
+                <h2>{producto.nombre}</h2>
+                <p>Precio: {producto.precio}</p>
+                <p>Stock: {producto.stock}</p>
+                <p>Color: {producto.color}</p>
+                <p>{producto.descripcion}</p>
                  {routeCart ? <Link to={`/Cart`}> <button className="btn btn-success"> Terminar mi compra</button> </Link> : 
                  <div><ItemCount onAdd={onAdd} contador={contador} sumando={sumando} 
                  stock={10} alSacar={alSacar} /></div> } 

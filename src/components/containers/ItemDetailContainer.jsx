@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
+import { getFirestore } from "../../firebase"
+import Cart from "../cart"
 
-import SimuladorBd from "../item/simuladorBd"
 import ItemDetail from "../itemDetail"
 
 
@@ -12,27 +13,31 @@ const ItemDetailContainer = () => {
     
 
 
-    const [details, setDetails] = useState([])
     
+
+    const [producto, setProducto] = useState([])
+    
+
     useEffect(() => {
-        const GetItems = new Promise ((resolve, reject) => {
-            setTimeout (( ) => {
-                resolve(SimuladorBd);
-            }, 1000);
-        })
-    
-        GetItems.then (resultado => {
-            setDetails(resultado);
+        const baseDeDatos = getFirestore(); //conexión a la bd
+        const itemCollection = baseDeDatos.collection('productos'); // Guardando la referencia
+        itemCollection.get().then((value) => {
+            let aux = value.docs.map(elem => {
+                return {...elem.data(), id:elem.id}
+            })
+            setProducto(aux);
         })
     }, [] )
+    
+    
     return (
         <>
 
         <div>
             <ul>
             
-                
-            <ItemDetail key={details.id} details={details}/>
+            <Cart producto={producto}/>
+            <ItemDetail key={producto.id} producto={producto}/>
             </ul>
         
            </div>
