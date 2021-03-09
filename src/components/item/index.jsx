@@ -30,13 +30,13 @@ const Items = ({producto,}) => {
     }
 
    const [routeCart, setRouterCart] = useState(false)
-   const {carrito, AgregarCarrito, setCarrito} = useContext(CartContext)
+   const {AgregarCarrito, carrito} = useContext(CartContext)
   
 
    const onAdd = () => {
     console.log('usted agrego', contador, 'productos')
     setRouterCart(true);
-    setCarrito([...carrito, producto]);
+    AgregarCarrito(producto);
 }
 
 
@@ -52,7 +52,7 @@ const Items = ({producto,}) => {
         <p>Precio: {producto.precio}</p>
         <p>Stock: {producto.stock}</p>
         <p>Color: {producto.color}</p>
-        <Link to={`/item/${producto.id}`}><p>Ver más</p></Link>
+        <Link to={`/item/${producto.id}`}><p>Ver más</p></Link> 
         {routeCart ? <Link to={`/Cart`}> <button className="btn btn-success"> Terminar mi compra</button> </Link> : 
         <div><ItemCount onAdd={onAdd} contador={contador} sumando={sumando} 
         stock={10} alSacar={alSacar} /></div> }

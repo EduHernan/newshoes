@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
+import { CartContext } from "../../context/CartContext"
 import { getFirestore } from "../../firebase"
 import Cart from "../cart"
 
@@ -10,11 +11,8 @@ import ItemDetail from "../itemDetail"
 
 const ItemDetailContainer = () => {
 
+    const {carrito, AgregarCarrito, setCarrito} = useContext(CartContext)
     
-
-
-    
-
     const [producto, setProducto] = useState([])
     
 
@@ -36,7 +34,7 @@ const ItemDetailContainer = () => {
         <div>
             <ul>
             
-            <Cart producto={producto}/>
+            <Cart carrito={carrito}/>
             <ItemDetail key={producto.id} producto={producto}/>
             </ul>
         

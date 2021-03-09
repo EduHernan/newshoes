@@ -22,7 +22,6 @@ const ItemDetail = () => {
         const item = itemCollection.doc(id)
         item.get().then((value) => {
             let aux = value.data()
-            console.log(aux);
             setProducto(aux);
         })
     }, [id])
@@ -50,14 +49,14 @@ const ItemDetail = () => {
     }
 
     const [routeCart, setRouterCart] = useState(false)
-    const {carrito, setCarrito} = useContext(CartContext)
+    const {carrito, AgregarCarrito} = useContext(CartContext)
 
 
 
     const onAdd = () => {
         console.log('usted agrego', contador, 'productos')
         setRouterCart(true);
-        setCarrito([...carrito, producto]);
+        AgregarCarrito(producto);
         
         
         

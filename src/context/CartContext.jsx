@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
 
 //Creando el espacio en memoria
@@ -8,18 +8,18 @@ export const CartContext = createContext();
 export const CartProvider = ({children}) => {
     
 
-    const contenedorCarrito = document.querySelector('#lista-carrito tbody');
     document.addEventListener('DOMContentLoaded', () => {
         let articulos = carrito;
         
         articulos = JSON.parse(localStorage.getItem('carrito')) || [];
         console.log(articulos)
 
-        insertarProducto();
         
     })
 
     const [carrito, setCarrito] = useState([])
+
+    
     
 
     
@@ -29,53 +29,31 @@ export const CartProvider = ({children}) => {
         
     }
 
-    
-       
-    insertarProducto();
-    
-    function insertarProducto () {
-       
-        carrito.forEach (carrito => {
-            const {imagen, nombre, precio, id} = carrito
-
-            const row = document.createElement('tr');
-        row.innerHTML = `
-        <td> 
-            <img src='${imagen}' width=150>
-        </td> 
-        <td>
-            ${nombre}
-        </td>
-        <td>
-            ${precio}
-        </td>
-        <td>
-            <button ${id} class="borrar-producto btn btn-danger">-</button>
-        </td>
-        `
-        contenedorCarrito.appendChild(row);
-        
-        almacenamiento();
-        
-        })
-        
-        
-    }
-
-    
-    
-
-    function borrarHTML() {
-        const eliminador = contenedorCarrito
-        eliminador.innerHTML = '';
+    /* const addItem = (producto) => {
+        if (!isInCart (producto.id)) {
+            const newCart = [...carrito, producto];
+            setCarrito(newCart)
         }
+    }
+
+    console.log(addItem)
+
+    const isInCart = (id) => {
+        
+        return carrito.findIndex(carr => carr.id === carrito.id) === 0 ? true:false;
+    }
+    console.log(isInCart) */
     
 
-    // Agregando Storage al documento
+   
+
+    
+    
+
+    
   
-    function almacenamiento() {
-    localStorage.setItem('carrito', JSON.stringify(carrito))
-    }
+    // function almacenamiento() {
+    // localStorage.setItem('carrito', JSON.stringify(carrito))}
 
     
   

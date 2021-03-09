@@ -1,7 +1,11 @@
 import Items from "../item"
 
 const ItemList = ({producto}) => {
+    
+
+    
     return (
+        <div>
         <div>
             <ul>
             {producto.map((producto) => {
@@ -12,6 +16,7 @@ const ItemList = ({producto}) => {
                     
             })}
             </ul>
+        </div>
         </div>
         
     )

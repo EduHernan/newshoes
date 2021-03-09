@@ -5,15 +5,14 @@ import Navbar from './components/navbar/navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ItemListContainer from './components/containers/ItemListContainer';
 import ItemDetailContainer from './components/containers/ItemDetailContainer';
-
-import Cart from './components/cart';
 import {CartProvider} from './context/CartContext';
+import CartContainer from './components/containers/CartContainer';
 
 
 
 let estilos = {color:'lavender', background:'orangered'}
 
-function App() {
+function App(producto) {
   return ( 
    
     <CartProvider>
@@ -33,7 +32,9 @@ function App() {
 
       
       <Route exact Path="/Cart">
-        <Cart/>
+        
+        <CartContainer/>
+
 
       </Route>
       
