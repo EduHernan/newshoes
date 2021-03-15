@@ -49,26 +49,20 @@ const ItemDetail = () => {
     }
 
     const [routeCart, setRouterCart] = useState(false)
-    const {carrito, AgregarCarrito} = useContext(CartContext)
+    const {AgregarCarrito, setShowCart} = useContext(CartContext)
 
 
 
     const onAdd = () => {
-        console.log('usted agrego', contador, 'productos')
         setRouterCart(true);
-        AgregarCarrito(producto);
+        AgregarCarrito({item: producto, quantity:contador});
+        setShowCart(true)
         
         
         
        }
 
       
-       
-        
-       
-    
-
-
     return (
         <>
           <div style={centrado}>

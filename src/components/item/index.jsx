@@ -7,7 +7,7 @@ import { CartContext } from "../../context/CartContext"
 let lista = {border:'2px solid orange', width:'300px', display:'inline-block', marginTop: 30}
 let dimensiones = {width:'250px'}
 
-const Items = ({producto,}) => {
+const Items = ({producto}) => {
 
     const [contador, setContador] = useState(1)
 
@@ -30,18 +30,14 @@ const Items = ({producto,}) => {
     }
 
    const [routeCart, setRouterCart] = useState(false)
-   const {AgregarCarrito, carrito} = useContext(CartContext)
-  
+   const {AgregarCarrito, setShowCart} = useContext(CartContext)
 
    const onAdd = () => {
-    console.log('usted agrego', contador, 'productos')
     setRouterCart(true);
-    AgregarCarrito(producto);
-}
-
-
-
-
+    AgregarCarrito({item: producto, quantity:contador});
+    setShowCart(true)
+   }
+  
 
 
     return (
@@ -52,6 +48,7 @@ const Items = ({producto,}) => {
         <p>Precio: {producto.precio}</p>
         <p>Stock: {producto.stock}</p>
         <p>Color: {producto.color}</p>
+        
         <Link to={`/item/${producto.id}`}><p>Ver más</p></Link> 
         {routeCart ? <Link to={`/Cart`}> <button className="btn btn-success"> Terminar mi compra</button> </Link> : 
         <div><ItemCount onAdd={onAdd} contador={contador} sumando={sumando} 

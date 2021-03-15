@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ItemListContainer from './components/containers/ItemListContainer';
 import ItemDetailContainer from './components/containers/ItemDetailContainer';
 import {CartProvider} from './context/CartContext';
-import CartContainer from './components/containers/CartContainer';
+import CartContainer from './components/containers/cartContainer';
 
 
 
