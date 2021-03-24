@@ -76,6 +76,9 @@ const CheckoutContainer = () => {
       </label>
     </div>
   </div>
+  <div>
+                    <h5>Total a pagar: ${totalAPagar}</h5>
+                </div>
   <Link to={`/`}><button class="btn btn-primary"type="submit" 
   onClick= {() => {finalizarCompra()}}>Finalizar compra</button></Link>
   
