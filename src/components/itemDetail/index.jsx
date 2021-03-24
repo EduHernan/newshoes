@@ -20,11 +20,13 @@ const ItemDetail = () => {
         const baseDeDatos = getFirestore(); //conexión a la bd
         const itemCollection = baseDeDatos.collection('productos'); // Guardando la referencia
         const item = itemCollection.doc(id)
+        
         item.get().then((value) => {
-            let aux = value.data()
+            let aux = {...value.data(), id:value.id}
             setProducto(aux);
         })
     }, [id])
+    console.log(producto)
     
     
 

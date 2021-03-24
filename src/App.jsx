@@ -6,41 +6,50 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ItemListContainer from './components/containers/ItemListContainer';
 import ItemDetailContainer from './components/containers/ItemDetailContainer';
 import {CartProvider} from './context/CartContext';
-import CartContainer from './components/containers/cartContainer';
+import CheckoutContainer from './components/containers/CheckoutContainer';
+import CartContenedor from './components/containers/CartContenedor';
+import Footer from './components/footer';
 
 
 
-let estilos = {color:'lavender', background:'orangered'}
+
+
+let estilos = {color:'black', background:'lavender'}
 
 function App(producto) {
   return ( 
    
     <CartProvider>
     <BrowserRouter>
-    <Navbar />
-
+    <Navbar producto={producto}/>
     
-    <h1 className= "" style= {estilos}>Tienda de productos</h1>
+    
+    <h1 style= {estilos}>Tienda deportiva online</h1>
     
     <Switch>
       <Route exact path="/">
-        <ItemListContainer greeting={'Listado de nuestros productos'} />
+        <ItemListContainer />
+      </Route>
+      <Route path="/category/:categoryID">
+        <ItemListContainer />
       </Route>
       <Route path="/item/:id">
         <ItemDetailContainer/>
       </Route>
-
       
-      <Route exact Path="/Cart">
+      <Route path="/cart">
+        <CartContenedor/>
         
-        <CartContainer/>
-
-
+      </Route>
+      <Route path="/checkout">
+        <CheckoutContainer/>
       </Route>
       
     </Switch>
+    <Footer/>
     </BrowserRouter>
     </CartProvider>
+    
    
     
     

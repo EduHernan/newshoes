@@ -8,73 +8,63 @@ export const CartContext = createContext();
 export const CartProvider = ({children}) => {
 
     const [carrito, setCarrito] = useState([])
+    // hook para mostrar o no el carrito si hay productos
     const [showCart, setShowCart] = useState(false)
 
+    // funcion para obtener el indice del item
     const isInCart = (id) => {
         
         return carrito.findIndex(carr => carr.item.id === id)
     }
 
+    //funcion para no generar duplicados en el carrito
     const AgregarCarrito = (producto) => {
         let estaCarrito = isInCart(producto.item.id)
         if (estaCarrito === -1) {
             setCarrito([...carrito, producto])
+            
         } else {
             let nuevoProducto = {...carrito[estaCarrito], quantity: carrito[estaCarrito].quantity + producto.quantity}
             let listaCarrito = carrito.filter (prod => producto.item.id !== prod.item.id)
             setCarrito ([...listaCarrito, nuevoProducto])
+            
         }
         
     }
-  
 
-    /* const AgregarCarrito = (producto) => {
-        if (!isInCart (producto.id)) {
-            const newCart = [...carrito, producto];
-            setCarrito(newCart)
-        }
-    }
+    // Funcion para borrar el carrito
+    const clearCart = () => {
+        setCarrito([]);
+    };
 
-    console.log(addItem)
+    // Funcion para remover un item del carrito
+    const removeItem = (productoId) => {
+        let remove = carrito.filter(remov => remov.item.id !== productoId)
+        setCarrito(remove);
+    };
 
-    const isInCart = (id) => {
-        
-        return carrito.findIndex(carr => carr.id === carrito.id) === 0 ? true:false;
-    }
-    console.log(isInCart)
-    
-    document.addEventListener('DOMContentLoaded', () => {
-        let articulos = carrito;
-        
-        articulos = JSON.parse(localStorage.getItem('carrito')) || [];
-        console.log(articulos)
+    // Funcion que muestra el total a pagar del carrito
+    const totalAPagar = carrito.reduce((acum, elem) => {
+        return acum = acum + elem.quantity * elem.item.precio;
+    }, 0)
 
-        
-    })
-    
-    */
-    
-
-   
+    // Funcion que muestra la cantidad de items en el carrito
+    const itemsCarrito = carrito.reduce((acum, elem) => {
+        return acum = acum + elem.quantity;
+    }, 0)
 
     
-    
-
-    
-  
-    // function almacenamiento() {
-    // localStorage.setItem('carrito', JSON.stringify(carrito))}
-
-    
-  
-    console.log(carrito)
-   
     return <CartContext.Provider value={{
         carrito,
         setCarrito,
         AgregarCarrito,
         showCart,
-        setShowCart
+        setShowCart,
+        clearCart,
+        removeItem,
+        totalAPagar,
+        itemsCarrito
+
     }}>
         {children}
         

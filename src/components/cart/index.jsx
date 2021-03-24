@@ -1,26 +1,49 @@
+import { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
 
 let formaCarrito = {border:'2px solid orange', display:'inline-block', marginTop: 30, textAlign: 'Center'}
-let centrado = {marginLeft: 'auto', marginRight: 'auto', width:'600px'}
+
+let width ={padding:'15px'}
 
 const Cart = ({detalles}) => {
+
+    const {removeItem} = useContext(CartContext);
+    
+
+    const handlerRemoveItem = () => {
+        removeItem(detalles.item.id)
+    }
     
     return (
         
-        <div>
-        <div style={centrado}>
-            <div style={formaCarrito}>
-           
-                <img src={detalles.item.imagen} width='200px' alt=''/>
+        <div style={formaCarrito}>
+            <tr style={width}>
+                <td style={width}>
+                <img src={detalles.item.imagen} width='150px' alt=''/>
+                </td>
+                <td style={width}>
                 <h2>{detalles.item.nombre}</h2>
-                <p>precio:{detalles.item.precio}</p>
-                <p>stock:{detalles.item.stock}</p>
-                <p>color:{detalles.item.color}</p>
-                <p>cantidad:{detalles.quantity}</p>
-            </div>
+                </td>
+                <td style={width}>
+                <p>Precio: ${detalles.item.precio}</p>
+                </td>
+                <td style={width}> 
+                <p>Stock: {detalles.item.stock}</p>
+                </td>
+                <td style={width}>
+                <p>Color: {detalles.item.color}</p>
+                </td>
+                <td style={width}>
+                <p>Cantidad: {detalles.quantity}</p>
+                </td>
+                <td style={width}>
+                <button className="btn btn-danger" onClick={handlerRemoveItem}>Eliminar</button>
+                </td>
+            </tr>
            
             
          </div>
-        </div>
+        
     
 )
 }

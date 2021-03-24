@@ -9,7 +9,7 @@ const ItemCount = ({stock, sumando, contador, alSacar, onAdd}) => {
             <p style={navbar}>{contador}</p>
             <button className="btn btn-success" onClick= {() => {sumando(stock)}} >+</button>
         </div> <br/>
-        <button onClick={onAdd} className="btn btn-success">Agregar al carrito</button>
+        <button onClick={onAdd} className="btn btn-primary">Agregar al carrito</button>
         </>
     )
 }
