@@ -11,21 +11,17 @@ import CartContenedor from './components/containers/CartContenedor';
 import Footer from './components/footer';
 
 
+let estilos = {color:'black', background:'lavender', marginLeft:60, marginRight:60}
 
+function App() {
+return (
 
+<CartProvider>
+  <BrowserRouter>
+    <Navbar />
 
-let estilos = {color:'black', background:'lavender'}
+    <h1 style={estilos}>Tienda deportiva online</h1>
 
-function App(producto) {
-  return ( 
-   
-    <CartProvider>
-    <BrowserRouter>
-    <Navbar producto={producto}/>
-    
-    
-    <h1 style= {estilos}>Tienda deportiva online</h1>
-    
     <Switch>
       <Route exact path="/">
         <ItemListContainer />
@@ -34,26 +30,27 @@ function App(producto) {
         <ItemListContainer />
       </Route>
       <Route path="/item/:id">
-        <ItemDetailContainer/>
+        <ItemDetailContainer />
       </Route>
-      
+
       <Route path="/cart">
-        <CartContenedor/>
-        
+        <CartContenedor />
+
       </Route>
       <Route path="/checkout">
-        <CheckoutContainer/>
+        <CheckoutContainer />
       </Route>
-      
+
     </Switch>
-    <Footer/>
-    </BrowserRouter>
-    </CartProvider>
-    
-   
-    
-    
-  );
+
+    <Footer />
+  </BrowserRouter>
+</CartProvider>
+
+
+
+
+);
 }
 
 export default App;

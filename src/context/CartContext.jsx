@@ -6,7 +6,7 @@ export const CartContext = createContext();
 
 
 export const CartProvider = ({children}) => {
-
+    // hook del carrito de compras
     const [carrito, setCarrito] = useState([])
     // hook para mostrar o no el carrito si hay productos
     const [showCart, setShowCart] = useState(false)

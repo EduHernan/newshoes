@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 
+let margin = {margin:-3}
 const CardWidget = () => {
 
     const {itemsCarrito} = useContext(CartContext);
@@ -13,8 +14,8 @@ const CardWidget = () => {
         <Link to={`/Cart`}>
         
         <img src="/images/carrito.png" width='50px' alt=""/>
-        <span className="">{itemsCarrito}</span>
-    </Link>
+        </Link>
+    <span style={margin}>{itemsCarrito}</span>
     </>
     )
 }
