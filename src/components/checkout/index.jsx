@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 let checkout = {border:'3px solid lavender', marginTop: 30, textAlign: 'center'}
 let centrado = {marginLeft: 'auto', marginRight: 'auto', width:'700px'}
-const CheckoutFinal = (orden) => {
+const Checkout = (orden) => {
 return (
 <>
 
@@ -21,4 +21,4 @@ return (
 )
 }
 
-export default CheckoutFinal
+export default Checkout

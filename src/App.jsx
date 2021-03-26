@@ -6,7 +6,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ItemListContainer from './components/containers/ItemListContainer';
 import ItemDetailContainer from './components/containers/ItemDetailContainer';
 import {CartProvider} from './context/CartContext';
-import CheckoutContainer from './components/containers/CheckoutContainer';
 import CartContenedor from './components/containers/CartContenedor';
 import Footer from './components/footer';
 
@@ -36,9 +35,6 @@ return (
       <Route path="/cart">
         <CartContenedor />
 
-      </Route>
-      <Route path="/checkout">
-        <CheckoutContainer />
       </Route>
 
     </Switch>

@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
 import { CartContext } from "../../context/CartContext";
 import { getFirestore } from "../../firebase";
-import CheckoutFinal from "../checkoutFinal";
 import firebase from 'firebase/app'
 import '@firebase/firestore'
+import Checkout from "../checkout";
 
 
 const CheckoutContainer = () => {
@@ -49,7 +49,7 @@ alert('Por favor verifique sus productos y sus datos')
 return (
 <>
   {finalCheckout ? <div>
-    <CheckoutFinal orden={orden} />
+    <Checkout orden={orden} />
   </div> :
   <div>
     <h2>Ingrese sus datos</h2>
